@@ -1,0 +1,6 @@
+[submodule "Overlap_extension"]
+	path = Overlap_extension
+	url = https://github.com/chjiao/Overlap_extension.git
+[submodule "PEHaplo"]
+	path = PEHaplo
+	url = https://github.com/chjiao/PEHaplo.git
