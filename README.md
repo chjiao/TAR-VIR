@@ -19,7 +19,7 @@ https://github.com/chjiao/PEHaplo
 1. Overlap extension
 After compilation, there will be two binary files: build and overlap  
 (1) build reads index    
-./build -f reads.fa -o prefix
+./build -f reads.fa -o prefix   
 (2) recruite reads
 ./overlap -S align.sam -x prefix -f reads.fa -c overlap_cutoff -o recruited_reads.fa   
 align.sam is the alignment results of reads.fa on available reference   
