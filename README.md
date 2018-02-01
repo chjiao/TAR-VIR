@@ -25,5 +25,5 @@ After compilation, there will be two binary files: build and overlap
 align.sam is the alignment results of reads.fa on available reference   
 
 2. Assemble
-The recruited reads usually contain both single- or paired-end reads, use the '-f' option of PEHaplo to input one fasta file. 
+The recruited reads usually contain both single- or paired-end reads, use the '-f' option of PEHaplo to input one fasta file.    
 For details, please look at https://github.com/chjiao/PEHaplo.
