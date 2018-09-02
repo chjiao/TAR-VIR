@@ -1,5 +1,5 @@
-# OL_PEHaplo
-OL_PEHaplo is a tool to assemble viral haplotypes from metagenomic data with partial or remotely related references. It mainly has two components: (1) Recruit reads from initial aligned reads with overlap extension; (2) *de novo* assembly of viral haplotypes from recruited reads.   
+# TAR-VIR
+TAR-VIR is a tool to assemble viral haplotypes from metagenomic data with partial or remotely related references. It mainly has two components: (1) Recruit reads from initial aligned reads with overlap extension; (2) *de novo* assembly of viral haplotypes from recruited reads.   
 
 ## Installation
 To download the source code:   
