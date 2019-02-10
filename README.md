@@ -1,5 +1,9 @@
 # TAR-VIR
-TAR-VIR is a tool to assemble viral haplotypes from metagenomic data with partial or remotely related references. It mainly has two components: (1) Recruit reads from initial aligned reads with overlap extension; (2) *de novo* assembly of viral haplotypes from recruited reads with PEHaplo.   
+TAR-VIR is developed to classify RNA viral reads from viral metagenomic data and and also to produce the assembled viral strains (i.e. haplotypes) from classified reads.  It mainly has two components: (1) Viral read classification using partial or remotely related reference genomes; (2) *de novo* assembly of viral haplotypes from recruited reads with PEHaplo, which is a haplotype reconstruction tool. 
+
+To use TAR-VIR, you need to have two types of data. (1) read set, such as viral metagenomic data containing reads from viruses. (2) a reference sequence, which can be a gene or a related genome. In the first step, you need to align the reads against the reference sequence using a read mapping tool. We recommend to use Bowtie2 with default parameters and the allowed error function "L,0,-0.6". The output of this step is a sam file. This sam file and the read data set will be used as input to TAR-VIR. The detailed installing and running instructions can be found below. 
+
+Note that we are also working on packaging TAR-VIR using Bioconda package manager. https://bioconda.github.io
 
 ## Installation
 To download the source code:   
@@ -14,6 +18,10 @@ make
 2. Install PEHaplo   
 Please look at the ReadMe file for PEHaplo at:   
 https://github.com/chjiao/PEHaplo   
+
+## Preprocessing
+1. You need to conduct error correction for the reads. By dafault, we use karect ("Karect: accurate correction of substitution, insertion and deletion errors for next-generation sequencing data", Bioinformatics)
+2. As mentioned earlier, please use Bowtie2 to align the input reads against the reference sequence. Use all the default parameters except the error function "L,0,-0.6". The output sam file will be used as input to the next step. 
 
 ## Usage   
 1. Overlap extension   
