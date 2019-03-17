@@ -48,3 +48,6 @@ If everything is good, the recruited reads number should be 8008.
 2. Assemble   
 The recruited reads usually contain both single- or paired-end reads, use the '-f' option of PEHaplo to input one fasta file.    
 For details, please look at https://github.com/chjiao/PEHaplo.
+
+## Installing via conda
+Noted that all the packages can be found on anaconda.cloud, which means you can easily install them by using conda. You can follow the [Guaidance](https://github.com/chjiao/TAR-VIR/blob/master/Guidance%20for%20Installing%20PEHaplo%20and%20TAR-VIR.md)to install step by step.
