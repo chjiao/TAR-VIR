@@ -34,8 +34,21 @@ Since there are some required dependencies for PEHaplo and TAR-VIR, you are sugg
 The following is from the FAQ of Anaconda. Conda will not work until you add the PATH manually. To add the PATH manually, open a text editor and open the file .bashrc or .bash_profile from your home directory. Add the line `export PATH="/<path to anaconda>/bin:$PATH" ` . NOTE: Replace \<path-to-anaconda>\ with the actual path of your installed anaconda file.
 4. If you are using a high performance computing center's cluster, it is possible that conda had been installed previously. To check this, use commands
 ```
-  module spider conda  # more detailed information about conda will show up, load the module (the next command) if it is installed already
-  module load Anaconda2
+  >module spider conda
+ 
+ ----------------------------------------------------------------------------
+  Anaconda2: Anaconda2/4.2.0
+----------------------------------------------------------------------------
+    Description:
+      Built to complement the rich, open source Python community, the
+      Anaconda platform provides an enterprise-ready data analytics
+      platform that empowers companies to adopt a modern open data science
+      analytics architecture. 
+
+
+    This module can be loaded directly: module load Anaconda2/4.2.0
+ 
+ >module load Anaconda2/4.2.0
 ```
 
 You can test whether the installation of anaconda is successful by typing some of the following commands. You will need to use some of them when installing TAR-VIR. Detailed information about conda commands can be found in this [link](https://conda.io/en/latest/)
