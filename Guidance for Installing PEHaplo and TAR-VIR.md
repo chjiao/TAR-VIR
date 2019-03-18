@@ -28,6 +28,9 @@ Since there are some required dependencies for PEHaplo and TAR-VIR, you are sugg
 *Please note that, **ALL** the modules we used in installing PEHaplo and TAR-VIR **ONLY** supply on **Linux**. So please make sure your OS is correct.*
 
 
+![GitHub Logo](/Users/yannisun/Desktop/conda.png)
+Format: ![Alt Text](url)
+
 1. Download the .sh file from the Download buttons at https://www.anaconda.com/distribution/ (see the picture above). 
 2. Bash the .sh file and install anaconda to your computer
 3. Add the anaconda to your PATH
