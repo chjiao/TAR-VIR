@@ -28,16 +28,12 @@ Since there are some required dependencies for PEHaplo and TAR-VIR, you are sugg
 *Please note that, **ALL** the modules we used in installing PEHaplo and TAR-VIR **ONLY** supply on **Linux**. So please make sure your OS is correct.*
 
 
-![GitHub Logo](/Users/yannisun/Desktop/conda.png)
-Format: ![Alt Text](url)
+1. Go to [Anaconda] (https://www.anaconda.com/distribution/). Choose "Linux". Then you see a title named  **Anaconda 2018.12 for Linux InstallerDownload**. Download the .sh file by clicking the **Download** buttons. Both Python 3.7 and 2.7 versions are OK. 
+2. Bash the .sh file and install anaconda to your computer.
+3. Add the anaconda to your PATH. 
+The following is from the FAQ of Anaconda. Conda will not work until you add the PATH manually. To add the PATH manually, open a text editor and open the file .bashrc or .bash_profile from your home directory. Add the line export PATH="/<path to anaconda>/bin:$PATH" . NOTE: Replace <path-to-anaconda> with the actual path of your installed anaconda file.
 
-1. Download the .sh file from the Download buttons at https://www.anaconda.com/distribution/ (see the picture above). 
-2. Bash the .sh file and install anaconda to your computer
-3. Add the anaconda to your PATH
-
-Then you can use the conda command on your terminal. Detail information of conda can be found in this [link](https://conda.io/en/latest/)
-
-There are several commands you may need to use:
+You can test whether the installation of anaconda is successful by typing some of the following commands. You will need to use some of them when installing TAR-VIR. Detailed information about conda commands can be found in this [link](https://conda.io/en/latest/)
 
 + See what enviroments you have already had
 
@@ -47,7 +43,7 @@ There are several commands you may need to use:
 
    > conda list
    
-+ Search if there is a avalible in your channel
++ Search if there is a avalible package in your channel
 
    > conda search
 
@@ -67,11 +63,11 @@ There are several commands you may need to use:
 
    > conda config --add channels [link of channel]
 
-## The whole pipeline for building an environment
+## Build an environment and install dependencies
 
-If you can use your conda on your terminal, let's begin.
+If the above commands work, this indicates that you have successfully installed conda. You are ready to install the tools now. There are only 4 steps and 8 commands. 
 
-1. Add some resource for your local channel
+Step 1. Add some resource for your local channel
 
 ```
     conda config --add channels defaults
@@ -92,31 +88,52 @@ If you can use your conda on your terminal, let's begin.
 
 ```
 
-2. Create a new environment with python2.7
+Step 2. Create a new environment with python2.7
 
 ```
     conda create -n bio2 python=2.7     # You can replace bio2 to any name you like
     conda activate bio2                 # Activate your env
 ```
 
-3. Install Python module: [networkx 1.11](https://github.com/networkx/networkx/releases/tag/networkx-1.11)
+Step 3. Install Python module: [networkx 1.11](https://github.com/networkx/networkx/releases/tag/networkx-1.11)
 
 ```
-    pip install networkx=1.11           
+    pip install networkx=1.11           # currently TAR-VIR only works with this version
 
 ```
-4. Install [Karect](https://github.com/aminallam/karect), [Readjoiner](http://www.zbh.uni-hamburg.de/forschung/gi/software/readjoiner.html), [Apsp](https://github.com/chjiao/Apsp), [SGA](https://github.com/jts/sga), [Samtools](http://samtools.sourceforge.net/), [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
+Step 4. Install dependencies and other needed tools [Karect](https://github.com/aminallam/karect), [Readjoiner](http://www.zbh.uni-hamburg.de/forschung/gi/software/readjoiner.html), [Apsp](https://github.com/chjiao/Apsp), [SGA](https://github.com/jts/sga), [Samtools](http://samtools.sourceforge.net/), [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
 
 ```
     conda install Karect bamtools apsp sga samtools bowtie2 overlap_extension
 ```
 
-# Installing TAR-VIR
+# Installing TAR-VIR and PEHaplo
 
 To download the source code:
 ```
 git clone --recursive https://github.com/chjiao/TAR-VIR.git
 ```
+
+# Testing Overlap
+
+
+1. Install Overlap extension module
+This program requries the supports of C++11.
+cd TAR-VIR
+cd Overlap_extension
+make
+
+2. Install PEHaplo
+Please look at the ReadMe file for PEHaplo at:
+https://github.com/chjiao/PEHaplo
+
+3. Run the example for testing
+```
+cd TAR-VIR/Overlap_extension/
+build -f test_data/virus.fa -o virus
+overlap -S test_data/HIV.sam -x virus -f test_data/virus.fa -c 180 -o virus_recruit.fa
+```
+If everything is good, the recruited reads number should be 8008.
 
 # Testing PEHaplo
 
@@ -145,24 +162,3 @@ Output:
     Contigs.fa: the produced contigs
     PEG_nodes_sequences.fa: the nodes sequences in the graph
 
-
-# Testing Overlap
-
-
-1. Install Overlap extension module
-This program requries the supports of C++11.
-cd TAR-VIR
-cd Overlap_extension
-make
-
-2. Install PEHaplo
-Please look at the ReadMe file for PEHaplo at:
-https://github.com/chjiao/PEHaplo
-
-3. Run the example for testing
-```
-cd TAR-VIR/Overlap_extension/
-build -f test_data/virus.fa -o virus
-overlap -S test_data/HIV.sam -x virus -f test_data/virus.fa -c 180 -o virus_recruit.fa
-```
-If everything is good, the recruited reads number should be 8008.
