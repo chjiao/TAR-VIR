@@ -31,7 +31,12 @@ Since there are some required dependencies for PEHaplo and TAR-VIR, you are sugg
 1. Go to [Anaconda] (https://www.anaconda.com/distribution/). Choose "Linux". Then you see a title named  **Anaconda 2018.12 for Linux InstallerDownload**. Download the .sh file by clicking the **Download** buttons. Both Python 3.7 and 2.7 versions are OK. 
 2. Bash the .sh file and install anaconda to your computer.
 3. Add the anaconda to your PATH. 
-The following is from the FAQ of Anaconda. Conda will not work until you add the PATH manually. To add the PATH manually, open a text editor and open the file .bashrc or .bash_profile from your home directory. Add the line export PATH="/<path to anaconda>/bin:$PATH" . NOTE: Replace <path-to-anaconda> with the actual path of your installed anaconda file.
+The following is from the FAQ of Anaconda. Conda will not work until you add the PATH manually. To add the PATH manually, open a text editor and open the file .bashrc or .bash_profile from your home directory. Add the line `export PATH="/<path to anaconda>/bin:$PATH" ` . NOTE: Replace \<path-to-anaconda>\ with the actual path of your installed anaconda file.
+4. If you are using a high performance computing center's cluster, it is possible that conda had been installed previously. To check this, use commands
+```
+  module spider conda  # more detailed information about conda will show up, load the module (the next command) if it is installed already
+  module load Anaconda2
+```
 
 You can test whether the installation of anaconda is successful by typing some of the following commands. You will need to use some of them when installing TAR-VIR. Detailed information about conda commands can be found in this [link](https://conda.io/en/latest/)
 
@@ -93,12 +98,14 @@ Step 2. Create a new environment with python2.7
 ```
     conda create -n bio2 python=2.7     # You can replace bio2 to any name you like
     conda activate bio2                 # Activate your env
+    source activate bio2                # Sometimes you need to use this command to activate the environment. Try conda activate first. It it does not work, you will see a hint such as ``CommandNotFoundError: 'activate is not a conda command.
+Did you mean 'source activate'?''
 ```
 
 Step 3. Install Python module: [networkx 1.11](https://github.com/networkx/networkx/releases/tag/networkx-1.11)
 
 ```
-    pip install networkx=1.11           # currently TAR-VIR only works with this version
+    pip install networkx=1.11           # currently TAR-VIR only works with this version. Under some systems, use pip install networkx==1.11. Type both and see the hints. 
 
 ```
 Step 4. Install dependencies and other needed tools [Karect](https://github.com/aminallam/karect), [Readjoiner](http://www.zbh.uni-hamburg.de/forschung/gi/software/readjoiner.html), [Apsp](https://github.com/chjiao/Apsp), [SGA](https://github.com/jts/sga), [Samtools](http://samtools.sourceforge.net/), [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
@@ -113,33 +120,67 @@ To download the source code:
 ```
 git clone --recursive https://github.com/chjiao/TAR-VIR.git
 ```
+Output of this command might look like 
+```
+Cloning into 'TAR-VIR'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 37 (delta 0), reused 0 (delta 0), pack-reused 34
+Unpacking objects: 100% (37/37), done.
+Submodule 'Overlap_extension' (https://github.com/chjiao/Overlap_extension.git) registered for path 'Overlap_extension'
+Submodule 'PEHaplo' (https://github.com/chjiao/PEHaplo.git) registered for path 'PEHaplo'
+Cloning into 'Overlap_extension'...
+remote: Enumerating objects: 64, done.
+remote: Total 64 (delta 0), reused 0 (delta 0), pack-reused 64
+Unpacking objects: 100% (64/64), done.
+Submodule path 'Overlap_extension': checked out '371909a3bcd0792b5f93f39970e2612f8010de7a'
+Cloning into 'PEHaplo'...
+remote: Enumerating objects: 200, done.
+remote: Total 200 (delta 0), reused 0 (delta 0), pack-reused 200
+Receiving objects: 100% (200/200), 10.74 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (126/126), done.
+Submodule path 'PEHaplo': checked out '861fbd6c7ab281ee7864014209d7733afa9bd887'
+```
 
 # Testing Overlap
 
 
 1. Install Overlap extension module
 This program requries the supports of C++11.
+```
 cd TAR-VIR
 cd Overlap_extension
 make
+```
 
-2. Install PEHaplo
+2. PEHaplo is written in Python and does not need to be compiled. 
 Please look at the ReadMe file for PEHaplo at:
 https://github.com/chjiao/PEHaplo
 
-3. Run the example for testing
+3. Run the example for testing read classification by TAR-VIR
 ```
 cd TAR-VIR/Overlap_extension/
 build -f test_data/virus.fa -o virus
 overlap -S test_data/HIV.sam -x virus -f test_data/virus.fa -c 180 -o virus_recruit.fa
 ```
+The output contains the number of recruited reads for each iteration, e.g.
+```
+(Iteration: 55, recruited reads number: 118
+Seeds number: 118
+Iteration: 56, recruited reads number: 121
+Seeds number: 121
+Iteration: 57, recruited reads number: 118
+Seeds number: 118
+```
+
 If everything is good, the recruited reads number should be 8008.
 
 # Testing PEHaplo
 
-*Please note that, **your env should be activated** when testing. If not, please do `conda activate [env_name]`*
+*Please note that, **your env should be activated** when testing. If not, please do `conda activate [env_name]`* 
 
-Run the example for testing
+Run the example for testing (it takes about 3 minutes to get the results)
 ```
 cd TAR-VIR/PEHaplo
 mkdir assembly
