@@ -1,17 +1,9 @@
 
-# Guidance for Installing PEHaplo and TAR-VIR
+# Guidance for Installing PEHaplo and TAR-VIR via conda
 
-This is a guidance for installing PEHaplo and TAR-VIR. Noted that all the dependencies for these two tools are avaliable on anaconda.cloud, which means you can easily install them by using conda.The whole pipeline are shown below.
+This is a guidance for installing PEHaplo and TAR-VIR via conda. Noted that all the dependencies for these two tools are avaliable on anaconda.cloud, which means you can easily install them by using conda.The whole pipeline for installing them via conda is shown below. To make this self-contained, we also briefly introduce the two tools before giving detailed instructions for installation. 
 
 ## Introduction
-
-### [PEHaplo](https://github.com/chjiao/PEHaplo)
-
-PEHaplo is a *de novo* assembly tool for recovering virus haplotypes from virus quasispecies sequencing data. It utilizes overlap graph and paired-end information to recover virus haplotypes. 
-
-It requires paired-end reads file as input and outputs contigs that are part of or full haplotypes.
-
-PEHaplo does not need any reference genomes and thus can be applied for identifying new haplotyps or haplotypes that are remotely related to characterized ones.
 
 ### [TAR-VIR](https://github.com/chjiao/TAR-VIR)
 
@@ -19,16 +11,24 @@ TAR-VIR is developed to classify RNA viral reads from viral metagenomic data and
 
 To use TAR-VIR, you need to have two types of data. (1) read set, such as viral metagenomic data containing reads from viruses. (2) a reference sequence, which can be a gene or a related genome. In the first step, you need to align the reads against the reference sequence using a read mapping tool. We recommend to use Bowtie2 with default parameters and the allowed error function "L,0,-0.6". The output of this step is a sam file. This sam file and the read data set will be used as input to TAR-VIR.
 
-## Advance Preparation - Installing Anaconda/Miniconda
+### [PEHaplo](https://github.com/chjiao/PEHaplo)
 
-Anaconda is a free and open-source distribution of the Python and R programming languages for scientific computing (data science, machine learning applications, large-scale data processing, predictive analytics, etc.), that aims to simplify package management and deployment. Package versions are managed by the package management system conda. You can easily create several individual environments with different python version such as 2.7, 3.5, 3.6.
+PEHaplo is a *de novo* assembly tool for recovering virus haplotypes from virus quasispecies sequencing data. It utilizes overlap graph and paired-end information to recover virus haplotypes. Unlike many existing assembly tools, PEHaplo targeted at strain-level assembly for reads sequenced from viruses. 
 
-Since there are a lot of required dependencies for PEHaplo and TAR-VIR. You are suggested to install them using [Anaconda](https://www.anaconda.com/distribution/) or [miniconda](https://docs.conda.io/en/latest/miniconda.html) so that you can easily create a well equipped environment.
+It requires paired-end reads file as input and outputs contigs that are part of or full haplotypes.
 
-*Please note that, **ALL** the module we used in installing PEHaplo and TAR-VIR **ONLY** supply on **Linux**. So please make sure your OS is correct.*
+PEHaplo does not need any reference genomes and thus can be applied for identifying new haplotyps or haplotypes that are remotely related to characterized ones.
+
+## Preparation - Installing Anaconda/Miniconda
+
+The webiste of Anaconda provides a nice summary: "Anaconda is a free and open-source distribution of the Python and R programming languages for scientific computing (data science, machine learning applications, large-scale data processing, predictive analytics, etc.), that aims to simplify package management and deployment. Package versions are managed by the package management system conda. You can easily create several individual environments with different python version such as 2.7, 3.5, 3.6.". 
+
+Since there are some required dependencies for PEHaplo and TAR-VIR, you are suggested to install them using [Anaconda](https://www.anaconda.com/distribution/) or [miniconda](https://docs.conda.io/en/latest/miniconda.html) so that you can easily create a well equipped environment.
+
+*Please note that, **ALL** the modules we used in installing PEHaplo and TAR-VIR **ONLY** supply on **Linux**. So please make sure your OS is correct.*
 
 
-1. Download the .sh file from the above link
+1. Download the .sh file from the Download buttons at https://www.anaconda.com/distribution/ (see the picture above). 
 2. Bash the .sh file and install anaconda to your computer
 3. Add the anaconda to your PATH
 
