@@ -229,5 +229,6 @@ python ../apsp_overlap_clique.py ../processed_test_data/Plus_strand_reads.fa ../
 
 Output:
     Contigs.fa: the produced contigs
+    
     PEG_nodes_sequences.fa: the nodes sequences in the graph
 
