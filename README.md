@@ -1,11 +1,14 @@
 # TAR-VIR
-TAR-VIR is developed to classify RNA viral reads from viral metagenomic data and and also to produce the assembled viral strains (i.e. haplotypes) from classified reads.  It mainly has two components: (1) Viral read classification using partial or remotely related reference genomes; (2) *de novo* assembly of viral haplotypes from recruited reads with PEHaplo, which is a haplotype reconstruction tool. 
+TAR-VIR is developed to classify RNA viral reads from viral metagenomic data and and also to produce the assembled viral strains (i.e. haplotypes) from classified reads.  It mainly has two components: (1) Viral read classification using partial or remotely related reference genomes; (2) *de novo* assembly of viral haplotypes from recruited reads with PEHaplo, which is a haplotype reconstruction tool. As TAR-VIR has a modular structure, the users have options to use other assembly tools after read classification in step (1). 
 
-To use TAR-VIR, you need to have two types of data. (1) read set, such as viral metagenomic data containing reads from viruses. (2) a reference sequence, which can be a gene or a related genome. In the first step, you need to align the reads against the reference sequence using a read mapping tool. We recommend to use Bowtie2 with default parameters and the allowed error function "L,0,-0.6". The output of this step is a sam file. This sam file and the read data set will be used as input to TAR-VIR. The detailed installing and running instructions can be found below. 
+To use TAR-VIR, you need to have two types of data. (1) read set, such as viral metagenomic data containing reads from viruses. (2) a reference sequence, which can be a gene or a related genome. In the first step, you need to align the reads against the reference sequence using a read mapping tool. We recommend to use Bowtie2 with default parameters and the allowed error function "L,0,-0.6". The output of this step is a sam file. This sam file and the read data set will be used as input to TAR-VIR. 
 
-Note that we are also working on packaging TAR-VIR using Bioconda package manager. https://bioconda.github.io
+We provide two methods for installing TAR-VIR and PEHaplo. You can directly install these tools following the instructions below. In addition, we also provide packaged TAR-VIR and PEHaplo via Anaconda, which makes the installation more straightforward. 
 
-## Installation
+## Installing via conda
+Noted that all the packages can be found on anaconda.cloud, which means you can easily install them by using conda. You can follow the [Guaidance](https://github.com/chjiao/TAR-VIR/blob/master/Guidance%20for%20Installing%20PEHaplo%20and%20TAR-VIR.md) to install step by step.
+
+## Installation without using conda
 To download the source code:   
 git clone --recursive  https://github.com/chjiao/TAR-VIR.git   
 
@@ -49,5 +52,4 @@ If everything is good, the recruited reads number should be 8008.
 The recruited reads usually contain both single- or paired-end reads, use the '-f' option of PEHaplo to input one fasta file.    
 For details, please look at https://github.com/chjiao/PEHaplo.
 
-## Installing via conda
-Noted that all the packages can be found on anaconda.cloud, which means you can easily install them by using conda. You can follow the [Guaidance](https://github.com/chjiao/TAR-VIR/blob/master/Guidance%20for%20Installing%20PEHaplo%20and%20TAR-VIR.md)to install step by step.
+
