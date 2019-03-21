@@ -243,7 +243,7 @@ Output:
 cd test_data
 mkdir index
 bowtie2-build -f HIV_ref.fa index/HXB2
-bowtie2 -x index/HXB2 -f virus_rmdup.fa --score-min L,0,-0.05 -t -p 4 -S result.sam
+bowtie2 -x index/HXB2 -f virus.fa --score-min L,0,-0.05 -t -p 4 -S result.sam
 ```
 To get only the mapped reads (to save loading time for large data set):
 
