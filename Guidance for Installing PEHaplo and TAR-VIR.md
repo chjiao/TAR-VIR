@@ -111,8 +111,7 @@ Step 2. Create a new environment with python2.7
 ```
     conda create -n bio2 python=2.7     # You can replace bio2 to any name you like
     conda activate bio2                 # Activate your env
-    source activate bio2                # Sometimes you need to use this command to activate the environment. Try conda activate first. It it does not work, you will see a hint such as ``CommandNotFoundError: 'activate is not a conda command.
-Did you mean 'source activate'?''
+    source activate bio2                # Sometimes you need to use this command to activate the environment. Try conda activate first. 
 ```
 
 Step 3. Install Python module: [networkx 1.11](https://github.com/networkx/networkx/releases/tag/networkx-1.11)
