@@ -254,31 +254,31 @@ samtools view -F 4 result.sam >result_mapped.sam
 2. Using Overlap to generate input for PEHaplo
 
 ```
-cd TAR-VIR/Overlap_extension/
+cd ..
 build -f test_data/virus.fa -o virus
-overlap -S test_data/HIV.sam -x virus -f test_data/virus.fa -c 180 -o virus_recruit.fa
+overlap -S test_data/result.sam -x virus -f test_data/virus.fa -c 180 -o virus_recruit.fa
 ```
 The output contains the number of recruited reads for each iteration, e.g.
 ```
 ...
 Iteration: 55, recruited reads number: 1294
-Seeds number: 118
+Seeds number: 1294
 Iteration: 56, recruited reads number: 1198
-Seeds number: 121
+Seeds number: 1198
 Iteration: 57, recruited reads number: 1258
-Seeds number: 118
+Seeds number: 1258
 Iteration: 58, recruited reads number: 1260
-Seeds number: 118
+Seeds number: 1260
 Iteration: 59, recruited reads number: 1160
-Seeds number: 118
+Seeds number: 1160
 Iteration: 60, recruited reads number: 1106
-Seeds number: 123
+Seeds number: 1106
 Iteration: 61, recruited reads number: 1075
-Seeds number: 130
+Seeds number: 1075
 Iteration: 62, recruited reads number: 986
-Seeds number: 96
+Seeds number: 986
 Iteration: 63, recruited reads number: 1052
-Seeds number: 56
+Seeds number: 1052
 ...
 ```
 
@@ -295,6 +295,7 @@ cp virus_recruit.fa ../PEHaplo
 3. Preprocessing your raw data into correct form for PEHaplo
 
 ```
+cd ../PEHaplo
 mkdir test
 cd test
 python ../tools/get_read_pairs.py ../virus_recruit.fa
