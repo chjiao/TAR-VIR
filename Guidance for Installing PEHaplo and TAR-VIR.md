@@ -305,9 +305,8 @@ The number of read pairs is: 11590, single-end reads is: 58146
 ```
 And it will output three files: single_end.fa, pair1.fa, and pair2.fa. 
 
-4. Running PEHaplo with your input data
+4. Running PEHaplo with your input data (It will take a few minutes to get the results)
 
-It will take a few minutes to get the results
 ```
 python ../pehaplo.py -f1 pair1.fa -f2 pair2.fa -l 180 -l1 210 -r 250 -F 600 -std 150 -n 3 -correct yes
 
