@@ -127,7 +127,7 @@ Step 4. Install dependencies and other needed tools [Karect](https://github.com/
     conda install Karect bamtools apsp sga samtools bowtie2 overlap_extension
 ```
 
-# Installing TAR-VIR and PEHaplo
+# Installing Overlap and PEHaplo
 
 To download the source code:
 ```
@@ -158,6 +158,7 @@ Submodule path 'PEHaplo': checked out '861fbd6c7ab281ee7864014209d7733afa9bd887'
 
 # Testing Overlap
 
+*Please note that, **your env should be activated** when testing. If not, please do `conda activate [env_name]`* 
 
 1. Install Overlap extension module
 This program requries the supports of C++11.
@@ -233,3 +234,85 @@ Output:
     
     PEG_nodes_sequences.fa: the nodes sequences in the graph
 
+# Running Example For Whole TAR-VIR
+
+*Please note that, **your env should be activated** when Running. If not, please do `conda activate [env_name]`* 
+
+1. Commands for generating sam file
+```
+cd test_data
+mkdir index
+bowtie2-build -f HIV_ref.fa index/HXB2
+bowtie2 -x index/HXB2 -f virus_rmdup.fa --score-min L,0,-0.05 -t -p 4 -S result.sam
+```
+To get only the mapped reads (to save loading time for large data set):
+
+```
+samtools view -F 4 result.sam >result_mapped.sam
+```
+
+2. Using Overlap to generate input for PEHaplo
+
+```
+cd TAR-VIR/Overlap_extension/
+build -f test_data/virus.fa -o virus
+overlap -S test_data/HIV.sam -x virus -f test_data/virus.fa -c 180 -o virus_recruit.fa
+```
+The output contains the number of recruited reads for each iteration, e.g.
+```
+...
+Iteration: 55, recruited reads number: 1294
+Seeds number: 118
+Iteration: 56, recruited reads number: 1198
+Seeds number: 121
+Iteration: 57, recruited reads number: 1258
+Seeds number: 118
+Iteration: 58, recruited reads number: 1260
+Seeds number: 118
+Iteration: 59, recruited reads number: 1160
+Seeds number: 118
+Iteration: 60, recruited reads number: 1106
+Seeds number: 123
+Iteration: 61, recruited reads number: 1075
+Seeds number: 130
+Iteration: 62, recruited reads number: 986
+Seeds number: 96
+Iteration: 63, recruited reads number: 1052
+Seeds number: 56
+...
+```
+
+If everything is good, the recruited reads number should be 81326.
+
+2. Copy the output file form the Overlap to PEHaplo
+
+Since we need to use the output file from the Overlap as the input of PEHaplo, we need to copy it to the PEHaplo dictionary. Do the following command.
+
+```
+cp virus_recruit.fa ../PEHaplo
+```
+
+3. Preprocessing your raw data into correct form for PEHaplo
+
+```
+mkdir test
+cd test
+python ../tools/get_read_pairs.py ../virus_recruit.fa
+```
+Output of this command should be:
+```
+The number of read pairs is: 11590, single-end reads is: 58146
+```
+And it will output three files: single_end.fa, pair1.fa, and pair2.fa. 
+
+4. Running PEHaplo with your input data
+
+It will take a few minutes to get the results
+```
+python ../pehaplo.py -f1 pair1.fa -f2 pair2.fa -l 180 -l1 210 -r 250 -F 600 -std 150 -n 3 -correct yes
+
+Output:
+Contigs.fa: the raw output contigs
+Contigs_clipped.fa: the contigs after error correction
+PEG_nodes_sequences.fa: the nodes sequences in the graph
+```
