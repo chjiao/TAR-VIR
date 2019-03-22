@@ -159,20 +159,8 @@ Submodule path 'PEHaplo': checked out '861fbd6c7ab281ee7864014209d7733afa9bd887'
 
 *Please note that, **your env should be activated** when testing. If not, please do `conda activate [env_name]`* 
 
-1. Install Overlap extension module
-This program requries the supports of C++11.
 
-```
-cd TAR-VIR
-cd Overlap_extension
-make
-```
-
-2. PEHaplo is written in Python and does not need to be compiled. 
-Please look at the ReadMe file for PEHaplo at:
-https://github.com/chjiao/PEHaplo
-
-3. Run the example for testing read classification by TAR-VIR
+1. Run the example for testing read classification by TAR-VIR
 ```
 cd TAR-VIR/Overlap_extension/
 build -f test_data/virus.fa -o virus
