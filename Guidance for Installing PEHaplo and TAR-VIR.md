@@ -169,28 +169,29 @@ overlap -S test_data/HIV.sam -x virus -f test_data/virus.fa -c 180 -o virus_recr
 The output contains the number of recruited reads for each iteration, e.g.
 ```
 ...
-Iteration: 55, recruited reads number: 118
-Seeds number: 118
-Iteration: 56, recruited reads number: 121
-Seeds number: 121
-Iteration: 57, recruited reads number: 118
-Seeds number: 118
-Iteration: 58, recruited reads number: 118
-Seeds number: 118
-Iteration: 59, recruited reads number: 118
-Seeds number: 118
-Iteration: 60, recruited reads number: 123
-Seeds number: 123
-Iteration: 61, recruited reads number: 130
-Seeds number: 130
-Iteration: 62, recruited reads number: 96
-Seeds number: 96
-Iteration: 63, recruited reads number: 56
-Seeds number: 56
+Iteration: 55, recruited reads number: 1294
+Seeds number: 1294
+Iteration: 56, recruited reads number: 1198
+Seeds number: 1198
+Iteration: 57, recruited reads number: 1258
+Seeds number: 1258
+Iteration: 58, recruited reads number: 1260
+Seeds number: 1260
+Iteration: 59, recruited reads number: 1160
+Seeds number: 1160
+Iteration: 60, recruited reads number: 1106
+Seeds number: 1106
+Iteration: 61, recruited reads number: 1075
+Seeds number: 1075
+Iteration: 62, recruited reads number: 986
+Seeds number: 986
+Iteration: 63, recruited reads number: 1052
+Seeds number: 1052
 ...
 ```
 
-If everything is good, the recruited reads number should be 8008.
+If everything is good, the recruited reads number should be 81326.
+
 
 # Testing PEHaplo
 
