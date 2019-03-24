@@ -112,7 +112,7 @@ Step 3. Install Python module: [networkx 1.11](https://github.com/networkx/netwo
 Step 4. Install dependencies and other needed tools [Karect](https://github.com/aminallam/karect), [Readjoiner](http://www.zbh.uni-hamburg.de/forschung/gi/software/readjoiner.html), [Apsp](https://github.com/chjiao/Apsp), [SGA](https://github.com/jts/sga), [Samtools](http://samtools.sourceforge.net/), [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
 
 ```
-    conda install Karect bamtools apsp sga samtools bowtie2 overlap_extension genometools-genometools
+    conda install Karect bamtools==2.4.0 apsp sga samtools bowtie2 overlap_extension genometools-genometools
 ```
 
 # Installing TAR-VIR and PEHaplo
