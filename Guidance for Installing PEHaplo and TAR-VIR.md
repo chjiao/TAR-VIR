@@ -1,13 +1,13 @@
 
 # Guidance for Installing PEHaplo and TAR-VIR via conda
 
-This is a guidance for installing PEHaplo and TAR-VIR via conda. Noted that all the dependencies for these two tools are avaliable on anaconda.cloud, which means you can easily install them by using conda.The whole pipeline for installing them via conda is shown below. To make this self-contained, we also briefly introduce the two tools before giving detailed instructions for installation. 
+This is a guidance for installing PEHaplo and TAR-VIR via conda. Noted that all the dependencies for these two tools are avaliable on anaconda.cloud, which means you can easily install them by using conda. The whole pipeline for installing them via conda is shown below. To make this self-contained, we also briefly introduce the two tools before giving detailed instructions for installation. 
 
 ## Introduction
 
 ### [TAR-VIR](https://github.com/chjiao/TAR-VIR)
 
-TAR-VIR is developed to classify RNA viral reads from viral metagenomic data and and also to produce the assembled viral strains (i.e. haplotypes) from classified reads. It mainly has two components: (1) Viral read classification using partial or remotely related reference genomes; (2) de novo assembly of viral haplotypes from recruited reads with PEHaplo, which is a haplotype reconstruction tool.
+TAR-VIR is developed to classify RNA viral reads from viral metagenomic data and also to produce the assembled viral strains (i.e. haplotypes) from classified reads. It mainly has two components: (1) Viral read classification using partial or remotely related reference genomes; (2) de novo assembly of viral haplotypes from recruited reads with PEHaplo, which is a haplotype reconstruction tool.
 
 To use TAR-VIR, you need to have two types of data. (1) read set, such as viral metagenomic data containing reads from viruses. (2) a reference sequence, which can be a gene or a related genome. In the first step, you need to align the reads against the reference sequence using a read mapping tool. We recommend to use Bowtie2 with default parameters and the allowed error function "L,0,-0.6". The output of this step is a sam file. This sam file and the read data set will be used as input to TAR-VIR.
 
@@ -313,7 +313,7 @@ For example, we find that we need to reinstall sga when we test our program unde
 conda uninstall sga
 conda install sga
 ```
-3. You can add the following links to accelerate adding channels when you are in mainland China.
+3. You can add the following links as your local channels to accelerate when you are in mainland China.
 
 ```
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
