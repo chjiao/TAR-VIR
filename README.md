@@ -6,7 +6,7 @@ To use TAR-VIR, you need to have two types of data. (1) read set, such as viral 
 We provide two methods for installing TAR-VIR and PEHaplo. You can directly install these tools following the instructions below. In addition, we also provide packaged TAR-VIR and PEHaplo via Anaconda, which makes the installation more straightforward. 
 
 ## Installing via conda (recommended)
-Noted that all the packages can be found on anaconda.cloud, which means you can easily install them by using conda. You can follow the [Guaidance](https://github.com/chjiao/TAR-VIR/blob/master/Guidance%20for%20Installing%20PEHaplo%20and%20TAR-VIR.md) to install step by step. 
+Noted that all the packages can be found on anaconda.cloud, which means you can easily install them by using conda. You can follow the [Guidance](https://github.com/chjiao/TAR-VIR/blob/master/Guidance%20for%20Installing%20PEHaplo%20and%20TAR-VIR.md) to install step by step. 
 
 ## Installation without using conda
 If you would like to install all the programs without using conda, please still take a look at the [Guaidance](https://github.com/chjiao/TAR-VIR/blob/master/Guidance%20for%20Installing%20PEHaplo%20and%20TAR-VIR.md), which contains a running example.
