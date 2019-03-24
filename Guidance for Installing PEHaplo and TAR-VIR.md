@@ -112,8 +112,7 @@ Step 3. Install Python module: [networkx 1.11](https://github.com/networkx/netwo
 Step 4. Install dependencies and other needed tools [Karect](https://github.com/aminallam/karect), [Readjoiner](http://www.zbh.uni-hamburg.de/forschung/gi/software/readjoiner.html), [Apsp](https://github.com/chjiao/Apsp), [SGA](https://github.com/jts/sga), [Samtools](http://samtools.sourceforge.net/), [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
 
 ```
-    conda install Karect bamtools apsp sga samtools bowtie2 overlap_extension
-    conda install -c bioconda genometools-genometools
+    conda install Karect bamtools apsp sga samtools bowtie2 overlap_extension genometools-genometools
 ```
 
 # Installing TAR-VIR and PEHaplo
@@ -315,6 +314,8 @@ conda uninstall sga
 conda install sga
 ```
 3. You can add the following links to accelerate adding channels when you are in mainland China.
+
+```
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
@@ -324,3 +325,4 @@ conda install sga
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
   
+```
