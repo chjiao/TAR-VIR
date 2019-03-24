@@ -83,7 +83,7 @@ You can test whether the installation of anaconda is successful by typing some o
 
 ## Build an environment and install dependencies
 
-If the above commands work, this indicates that you have successfully installed conda. You are ready to install the tools now. There are only 4 steps and 8 commands. 
+If the above commands work, this indicates that you have successfully installed conda. You are ready to install the tools now. There are only a few commands to run.
 
 Step 1. Add some resource for your local channel
 
@@ -92,17 +92,6 @@ Step 1. Add some resource for your local channel
     conda config --add channels conda-forge
     conda config --add channels bioconda
     conda config --add channels kennethshang
-    
-    
-    # You can add the following links to accelerate when you are in China mainland
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r/
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
 
 ```
 
@@ -124,9 +113,10 @@ Step 4. Install dependencies and other needed tools [Karect](https://github.com/
 
 ```
     conda install Karect bamtools apsp sga samtools bowtie2 overlap_extension
+    conda install -c bioconda genometools-genometools
 ```
 
-# Installing Overlap and PEHaplo
+# Installing TAR-VIR and PEHaplo
 
 To download the source code:
 ```
@@ -155,7 +145,7 @@ Resolving deltas: 100% (126/126), done.
 Submodule path 'PEHaplo': checked out '861fbd6c7ab281ee7864014209d7733afa9bd887'
 ```
 
-# Testing Overlap
+# Testing TAR-VIR
 
 *Please note that, **your env should be activated** when testing. If not, please do `conda activate [env_name]`* 
 
@@ -219,10 +209,10 @@ python ../apsp_overlap_clique.py ../processed_test_data/Plus_strand_reads.fa ../
 Output:
     
     Contigs.fa: the produced contigs
-    
-    PEG_nodes_sequences.fa: the nodes sequences in the graph
+    Contigs_clipped.fa is the output after contig correction - we applied one more step to align reads to assembled contigs and try to break some misjoined contigs.
+    PEG_nodes_sequences.fa: the nodes sequences in the graph before doing any assembly.
 
-# Running Example For Whole TAR-VIR
+# A running Example For Whole TAR-VIR (read recruting and strain assembly)
 
 *Please note that, **your env should be activated** when Running. If not, please do `conda activate [env_name]`* 
 
@@ -239,7 +229,7 @@ To get only the mapped reads (to save loading time for large data set):
 samtools view -F 4 result.sam >result_mapped.sam
 ```
 
-2. Using Overlap to generate input for PEHaplo
+2. Using the Overlap component in TAR-VIR to recruit reads from given references.
 
 ```
 cd ..
@@ -304,3 +294,33 @@ Contigs.fa: the raw output contigs
 Contigs_clipped.fa: the contigs after error correction
 PEG_nodes_sequences.fa: the nodes sequences in the graph
 ```
+# FAQ
+1. If you see an error, very likely it is caused by missing packages/dependencies. For example, if you see an error like below when running PEHaplo:
+Traceback (most recent call last):
+  File "/mnt/home/yannisun/TAR-VIR/PEHaplo/tools/identify_misjoin_contigs.py", line 5, in <module>
+    from scipy import stats
+ImportError: No module named scipy
+Traceback (most recent call last):
+  File "../pehaplo.py", line 157, in <module>
+    contigs_mapped.sam 250 600 150' returned non-zero exit status 1
+ The message **ImportError: No module named scipy** means that you did not have scipy installed. In this case, run the following command will solve this problem. 
+
+```  
+> pip install scipy
+```
+2. Sometimes, just try to re-run the packaging installing command will solve most issues.
+For example, we find that we need to reinstall sga when we test our program under one environment. In this case, you can uninstall the old packages and reinstall the new one. 
+```
+conda uninstall sga
+conda install sga
+```
+3. You can add the following links to accelerate adding channels when you are in mainland China.
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r/
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+  
