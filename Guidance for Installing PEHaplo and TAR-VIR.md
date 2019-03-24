@@ -1,13 +1,13 @@
 
-# Guidance for Installing PEHaplo and TAR-VIR via conda
+# Guidance for Installing TAR-VIR and PEHaplo via conda
 
-This is a guidance for installing PEHaplo and TAR-VIR via conda. Noted that all the dependencies for these two tools are avaliable on anaconda.cloud, which means you can easily install them by using conda. The whole pipeline for installing them via conda is shown below. To make this self-contained, we also briefly introduce the two tools before giving detailed instructions for installation. 
+This is a guidance for installing TAR-VIR and PEHaplo via conda. Noted that all the dependencies for these two tools are avaliable on anaconda.cloud, which means you can easily install them by using conda. The whole pipeline for installing them via conda is shown below. To make this self-contained, we also briefly introduce the two tools before giving detailed instructions for installation. 
 
 ## Introduction
 
 ### [TAR-VIR](https://github.com/chjiao/TAR-VIR)
 
-TAR-VIR is developed to classify RNA viral reads from viral metagenomic data and also to produce the assembled viral strains (i.e. haplotypes) from classified reads. It mainly has two components: (1) Viral read classification using partial or remotely related reference genomes; (2) de novo assembly of viral haplotypes from recruited reads with PEHaplo, which is a haplotype reconstruction tool.
+TAR-VIR is developed to classify RNA viral reads from viral metagenomic data and also to produce the assembled viral strains (i.e. haplotypes) from classified reads. It mainly has two components: (1) Viral read classification using partial or remotely related reference genomes; (2) de novo assembly of viral haplotypes from recruited reads with PEHaplo, which is a haplotype reconstruction tool. TAR-VIR has a modular structure. Once the reads are classified by the first component, users can choose to assembly them using other assembly tools. In general, for producing strain-level viral assemblies, we recommend to use the default assembly tool PEHaplo. If a user is only interested in getting a consensus sequence, many other assembly tools can be chosen. In that case, users do not need to install PEHaplo. 
 
 To use TAR-VIR, you need to have two types of data. (1) read set, such as viral metagenomic data containing reads from viruses. (2) a reference sequence, which can be a gene or a related genome. In the first step, you need to align the reads against the reference sequence using a read mapping tool. We recommend to use Bowtie2 with default parameters and the allowed error function "L,0,-0.6". The output of this step is a sam file. This sam file and the read data set will be used as input to TAR-VIR.
 
