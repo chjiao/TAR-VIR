@@ -231,7 +231,6 @@ samtools view -F 4 result.sam >result_mapped.sam
 2. Using the Overlap component in TAR-VIR to recruit reads from given references.
 
 ```
-cd ..
 build -f test_data/virus.fa -o virus
 overlap -S test_data/result.sam -x virus -f test_data/virus.fa -c 180 -o virus_recruit.fa
 ```
