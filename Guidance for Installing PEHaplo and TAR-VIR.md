@@ -155,6 +155,8 @@ cd TAR-VIR/Overlap_extension/
 build -f test_data/virus.fa -o virus
 overlap -S test_data/HIV.sam -x virus -f test_data/virus.fa -c 180 -o virus_recruit.fa
 ```
+-S is followed by the sam file, which is the output of Bowtie. -c is followed by the overlap threshold. -o is followed by the output file name (recruited reads). -x is followed by the index. -f is followed by the read data set. 
+
 The output contains the number of recruited reads for each iteration, e.g.
 ```
 ...
@@ -294,6 +296,8 @@ Contigs_clipped.fa: the contigs after error correction
 PEG_nodes_sequences.fa: the nodes sequences in the graph
 ```
 # FAQ
+0. If you only want to recruite reads using TAR-VIR, you do not need to use conda because TAR-VIR has very few dependencies and can be installed easily. Most of the dependencies are for PEHaplo, the assembly step. 
+
 1. If you see an error, very likely it is caused by missing packages/dependencies. For example, if you see an error like below when running PEHaplo:
 Traceback (most recent call last):
   File "/mnt/home/yannisun/TAR-VIR/PEHaplo/tools/identify_misjoin_contigs.py", line 5, in <module>
@@ -313,7 +317,8 @@ For example, we find that we need to reinstall sga when we test our program unde
 conda uninstall sga
 conda install sga
 ```
-3. You can add the following links as your local channels to accelerate when you are in mainland China.
+3. If you cannot install all packages in one command line, please try to install them seperately.  
+4. You can add the following links as your local channels to accelerate when you are in mainland China.
 
 ```
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
