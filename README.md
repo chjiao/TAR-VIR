@@ -5,6 +5,20 @@ To use TAR-VIR, you need to have two types of data. (1) read set, such as viral 
 
 We provide two methods for installing TAR-VIR and PEHaplo. You can directly install these tools following the instructions below. In addition, we also provide packaged TAR-VIR and PEHaplo via Anaconda, which makes the installation more straightforward. 
 
+## New version
+If you installed TAR-VIR via conda. New version is available now. please use `conda install -c kennethshang overlap_extension` to update. In the new version of TAR-VIR, we provide a new parameter that allow TAR-VIR run in parallel to save time. If you want to run TAR-VIR on a large dataset, this might be helpfull. The information is shown below:
+
+```
+Parameter:
+  -t  number of threads
+
+Note:
+   Due to the inplementation of TAR-VIR, the number of '-t' satisfy the equation:
+                                   k = nt     (n = 1, 2, 3 ...)
+   k is a paramter represents partations of Index. n is any positive integer
+```
+
+
 ## Installing via conda (recommended if you want to install both TAR-VIR and PEHaplo)
 Noted that all the packages can be found on anaconda.cloud, which means you can easily install them by using conda. You can follow the [Guidance](https://github.com/chjiao/TAR-VIR/blob/master/Guidance%20for%20Installing%20PEHaplo%20and%20TAR-VIR.md) to install step by step. 
 
